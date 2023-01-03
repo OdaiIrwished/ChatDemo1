@@ -42,7 +42,7 @@ namespace ChatDemo1
             .AddDefaultTokenProviders();
             //services.AddScoped<IEmailSender, EmailSender>();
             services.AddTransient<IChatHub, ChatHub>();
-            services.AddSingleton<Creptography, Creptography>();
+            //services.AddSingleton<Creptography, Creptography>();
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddSignalR();
