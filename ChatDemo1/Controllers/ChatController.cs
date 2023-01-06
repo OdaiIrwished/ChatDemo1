@@ -1,5 +1,6 @@
 ﻿using ChatDemo1.Data;
 using ChatDemo1.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace ChatDemo1.Controllers
 {
+    [Authorize]
     public class ChatController : Controller
     {
         private readonly ApplicationDbContext context;

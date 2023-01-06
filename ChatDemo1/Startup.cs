@@ -74,7 +74,7 @@ namespace ChatDemo1
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=chat}/{action=Index}/{id?}");
                 endpoints.MapHub<ChatHub>("/chathub");
 
                 endpoints.MapRazorPages();
