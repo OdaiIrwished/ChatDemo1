@@ -4,6 +4,6 @@ namespace ChatDemo1.Services
 {
     public interface IChatHub
     {
-       public Task SendMessage(string message, string UserId);
+       public Task SendMessage(string message, string UserId, int algorithmType);
     }
 }

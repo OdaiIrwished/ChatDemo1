@@ -16,5 +16,7 @@ namespace ChatDemo1.Data
         //public Chat chat { get; set; }
         public string  SenderId { get; set; }
         public string receiverId { get; set; }
+        public int AlgorithmType { get; set; }
+
     }
 }

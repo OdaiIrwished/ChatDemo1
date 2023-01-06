@@ -4,11 +4,14 @@ var connection = new signalR.HubConnectionBuilder()
     .withUrl("/chathub")
     .build();
 
-connection.on("receiveMessage", function (message, receiverId)
+connection.on("receiveMessage", function (message, receiverId, algorithmType)
 {
 	debugger;
+	if (!message || message == '') {
+		return;
+    }
 	
-	connection.invoke("Decrypt", message)
+	connection.invoke("Decrypt", message,algorithmType)
 		.then(function (decryptedMessage) {
 			console.log(decryptedMessage);
 
@@ -54,8 +57,9 @@ var SendFunc = function (message, receiverId) {
                             </div>
                         </div>
 
-        `)
-	connection.invoke("sendMessage", message, receiverId).catch(function (err) {
+        `);
+	var algorithmType = $("#chooseAlgorithmSelect").val();
+	connection.invoke("sendMessage", message, receiverId, parseInt(algorithmType)).catch(function (err) {
 		return console.error(err.toString() + "eeee");
 	});
 	
