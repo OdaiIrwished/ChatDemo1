@@ -53,7 +53,19 @@ namespace ChatDemo1.Controllers
             var Sender = await userManager.GetUserAsync(User);
 
 
-            var Messages = await context.Messages.Where(x => ( x.receiverId == receiverId && x.SenderId == Sender.Id )|| x.SenderId == receiverId && x.receiverId == Sender.Id).ToListAsync();
+            var Messages = await context.Messages
+                .Where(x => ( x.receiverId == receiverId && x.SenderId == Sender.Id )|| x.SenderId == receiverId && x.receiverId == Sender.Id)
+                .Select(z=> new Message
+                {
+                    Content= DECAlgorithm.Decrypt(z.Content,z.Key),
+                    IsReaded = z.IsReaded,
+                    Id=z.Id,
+                    receiverId = z.receiverId,
+                    SenderId = z.SenderId,
+                    Send_Time = z.Send_Time
+                    
+                })
+                .ToListAsync();
 
            
          

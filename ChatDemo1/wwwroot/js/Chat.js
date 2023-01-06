@@ -6,6 +6,7 @@ var connection = new signalR.HubConnectionBuilder()
 
 connection.on("receiveMessage", function (message, receiverId)
 {
+	debugger;
 	
 	connection.invoke("Decrypt", message)
 		.then(function (decryptedMessage) {

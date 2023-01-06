@@ -33,7 +33,7 @@ namespace ChatDemo1.Services
         public async Task<string> EncryptAsync(string plaintext,string receiverId)
         {
             var Key = RandomText();
-            var cypherText = HillCipher.Encrypt(plaintext, Key);
+            var cypherText = DECAlgorithm.Encrypt(plaintext, Key);
             if (cypherText != null && receiverId != null)
             {
                 var msg = new Data.Message { Content = cypherText,Key = Key, receiverId = receiverId, SenderId = ApplicationUser.Id, Send_Time = DateTime.UtcNow };
@@ -45,7 +45,7 @@ namespace ChatDemo1.Services
         public string Decrypt(string ciphertext)
         {
             var Key = applicationDb.Messages.Where(x=> x.Content == ciphertext).First();
-            var res = HillCipher.Decrypt(Key.Content, Key.Key);
+            var res = DECAlgorithm.Decrypt(Key.Content, Key.Key);
             return res;
         }
         private string RandomText()
